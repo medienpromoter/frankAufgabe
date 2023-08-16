@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Personen index{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Mitarbeiter</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Vorname</th>
+                <th>Nachname</th>
+                <th>Ort</th>
+                <th>Team</th>
+                {% if 'ROLE_ADMIN' in app.user.roles %}
+                    <th>Aktionen</th>
+                {% endif %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for personen in personens %}
+                <tr>
+                    <td>{{ personen.id }}</td>
+                    <td>{{ personen.vorname }}</td>
+                    <td>{{ personen.nachname }}</td>
+                    <td>{{ personen.ort }}</td>
+                    <td>{{ personen.team }}</td>
+                    {% if 'ROLE_ADMIN' in app.user.roles %}
+                        <td>
+                            <a href="{{ path('app_personen_show', {'id': personen.id}) }}" class="btn btn-sm btn-primary">Anzeigen</a>
+                            <a href="{{ path('app_personen_edit', {'id': personen.id}) }}" class="btn btn-sm btn-info">Bearbeiten</a>
+                        </td>
+                    {% endif %}
+
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="6">no records found</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {{ knp_pagination_render(personens) }}
+
+        <a href="{{ path('app_personen_new') }}" class="btn btn-success">Mitarbeiter hinzufügen</a>
+    </div>
+{% endblock %}

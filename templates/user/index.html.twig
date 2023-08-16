@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nutzer{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>User index</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Rollen</th>
+                <th>Aktionen</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+
+                    <td>
+                        {% if 'ROLE_ADMIN' in user.roles %}
+                            Admin
+                        {% else %}
+                            Nutzer
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{{ path('app_user_show', {'id': user.id}) }}" class="btn btn-sm btn-primary">Anzeigen</a>
+                        <a href="{{ path('app_user_edit', {'id': user.id}) }}" class="btn btn-sm btn-info">Bearbeiten</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="4">Keine Datensätze gefunden</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Personen{% endblock %}
+
+{% block body %}
+    <h1>Mitarbeiter hinzufügen</h1>
+
+    {{ include('personen/_form.html.twig') }}
+
+    <a href="{{ path('app_personen_index') }}" class="btn btn-secondary">Zurück zur Übersicht</a>
+{% endblock %}

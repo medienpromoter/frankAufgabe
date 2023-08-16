@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Personen{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Personen</h1>
+
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ personen.id }}</td>
+            </tr>
+            <tr>
+                <th>Vorname</th>
+                <td>{{ personen.vorname }}</td>
+            </tr>
+            <tr>
+                <th>Nachname</th>
+                <td>{{ personen.nachname }}</td>
+            </tr>
+            <tr>
+                <th>Strasse</th>
+                <td>{{ personen.strasse }}</td>
+            </tr>
+            <tr>
+                <th>Hausnummer</th>
+                <td>{{ personen.hausnummer }}</td>
+            </tr>
+            <tr>
+                <th>Plz</th>
+                <td>{{ personen.plz }}</td>
+            </tr>
+            <tr>
+                <th>Ort</th>
+                <td>{{ personen.ort }}</td>
+            </tr>
+            <tr>
+                <th>Team</th>
+                <td>{{ personen.team }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <a href="{{ path('app_personen_index') }}" class="btn btn-secondary">back to list</a>
+
+        <a href="{{ path('app_personen_edit', {'id': personen.id}) }}" class="btn btn-info">edit</a>
+
+        {{ include('personen/_delete_form.html.twig') }}
+    </div>
+{% endblock %}

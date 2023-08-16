@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <a class="navbar-brand" href="{{ path('app_home_index') }}">Mitarbeiterverwaltung</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_home_index') }}">Home</a>
+                    </li>
+                {% if app.user is not null %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_personen_index') }}">Mitarbeiter Übersicht</a>
+                    </li>
+                {% endif %}
+                {% if app.user is not null and 'ROLE_ADMIN' in app.user.roles %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_personen_new') }}">Mitarbeiter hinzufügen</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_user_index') }}">Nutzerverwaltung</a>
+                    </li>
+                {% endif %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/{{ app.user ? 'logout' : 'login' }}">
+                        <i class="material-icons">
+                            {{ app.user ? 'exit_to_app' : 'person' }}
+                        </i>
+                        {{ app.user ? 'Logout' : 'Login' }}
+                    </a>
+                </li>
+                {% if not app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_register') }}">
+                            <i class="material-icons">person_add</i>
+                            Registrieren
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+            <span class="navbar-text">
+                {{ app.user ? app.user.email : '' }}
+            </span>
+        </div>
+    </div>
+</nav>

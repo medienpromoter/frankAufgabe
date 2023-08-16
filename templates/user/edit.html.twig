@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit User{% endblock %}
+
+{% block body %}
+    <h1>Edit Mitarbeiter</h1>
+
+    {{ include('user/_form.html.twig', {'button_label': 'Speichern'}) }}
+
+    <a href="{{ path('app_user_index') }}" class="btn btn-secondary">Zurück zur Übersicht</a>
+
+    {{ include('user/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Home{% endblock %}
+
+
+{% block body %}
+    <div class="container mt-5">
+        <h1>Willkommen in der Mitarbeiterverwaltung</h1>
+        <p>
+            Herzlich willkommen in unserer Mitarbeiterverwaltungs-App. Diese App ermöglicht es Ihnen, Mitarbeiter effizient zu verwalten,
+            hinzuzufügen, zu bearbeiten und anzuzeigen. Mit benutzerfreundlichen Funktionen und einem intuitiven Design ist die
+            Mitarbeiterverwaltung einfach und bequem zu bedienen.
+        </p>
+        <p>
+            Erfassen Sie neue Mitarbeiter, verfolgen Sie Informationen und bleiben Sie organisiert. Wir hoffen, dass Ihnen unsere App
+            bei der Verwaltung Ihrer Mitarbeiterbezogenen Daten hilfreich ist.
+        </p>
+
+        {% if not app.user %}
+            <p>
+                Hier können Sie sich <a href="{{ path('app_login') }}">einloggen</a> oder <a href="{{ path('app_register') }}">registrieren</a>.
+            </p>
+        {% endif %}
+    </div>
+{% endblock %}

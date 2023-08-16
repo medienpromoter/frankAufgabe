@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Personen{% endblock %}
+
+{% block body %}
+    <h1>Edit Personen</h1>
+
+    {{ include('personen/_form.html.twig', {'button_label': 'Speichern'}) }}
+
+    <a href="{{ path('app_personen_index') }}" class="btn btn-secondary">Zurück zur Übersicht</a>
+
+    {{ include('personen/_delete_form.html.twig') }}
+{% endblock %}
